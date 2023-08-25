@@ -30,6 +30,7 @@ async def get_ask(prompt, style, bot: Chatbot):
     source = []
     for n in range(10):
         try:
+            bot = await Chatbot.create(cookies=cookies)
             text_json = await bot.ask(prompt=prompt, conversation_style=getattr(ConversationStyle, style))
             text_json = get_num(text_json["item"]["messages"])
             text = text_json['text']
@@ -43,6 +44,11 @@ async def get_ask(prompt, style, bot: Chatbot):
         except Exception as e:
             # 使用HTTPException来处理异常，并返回错误信息
             raise HTTPException(status_code=500, detail=str(e))
+        finally:
+            try:
+                await bot.close()
+            except:
+                pass
     return ''
 
 # 定义一个异步函数，用于并发地调用get_ask函数，并将结果存储在result列表中
@@ -60,12 +66,6 @@ async def main_process(result, sem, style: str, bot: Chatbot):
         await asyncio.wait(tasks)
 
 result = []
-
-# 定义一个依赖函数，用于返回一个Chatbot对象，并在使用完后关闭它
-def get_bot():
-    bot = Chatbot.create()
-    yield bot
-    bot.close()
 
 # 定义一个路由函数，用于处理POST请求，并返回响应数据
 @app.post("/bing", response_model=Output)
