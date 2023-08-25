@@ -1,4 +1,0 @@
-services:
-    env:
-      - type: python
-        PYTHON_VERSION: 3.9.10

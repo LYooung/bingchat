@@ -5,7 +5,6 @@ from fastapi import FastAPI, Request, Response, Depends, HTTPException
 from pydantic import BaseModel
 from EdgeGPT.EdgeGPT import Chatbot, ConversationStyle
 
-cookies = json.loads(open("cookie.json", encoding="utf-8").read())
 app = FastAPI()
 
 # 定义一个输入模型类，用于验证和序列化输入数据
