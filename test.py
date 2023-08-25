@@ -7,9 +7,11 @@ headers = {
 params = {
     "prompts": ["你好", "你叫什么名字"],
     "sem": 1,
-    "style": "Balanced"
+    "style": "creative",
+    "cookie": True
 }
 # 发送请求
-response = requests.post("https://chattest-1umk.onrender.com/bing", headers=headers, json=params)
+# response = requests.post("https://chattest-1umk.onrender.com/bing", headers=headers, json=params)
+response = requests.post("http://127.0.0.1:8000/bing", headers=headers, json=params)
 # 打印返回结果
 print(response.text)
