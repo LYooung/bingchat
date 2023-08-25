@@ -8,7 +8,6 @@ params = {
     "prompts": ["你好", "你叫什么名字"],
     "sem": 1,
     "style": "creative",
-    "cookie": False
 }
 # 发送请求
 # response = requests.post("https://chattest-1umk.onrender.com/bing", headers=headers, json=params)

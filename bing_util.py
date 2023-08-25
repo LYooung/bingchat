@@ -4,7 +4,7 @@ import json
 from fastapi import FastAPI, Request, Response, Depends, HTTPException
 from pydantic import BaseModel
 from EdgeGPT.EdgeGPT import Chatbot, ConversationStyle
-# cookies = json.loads(open("cookie.json", encoding="utf-8").read())
+cookies = json.loads(open("cookie.json", encoding="utf-8").read())
 app = FastAPI()
 
 # 定义一个输入模型类，用于验证和序列化输入数据
@@ -30,7 +30,7 @@ async def get_ask(prompt, style):
             #     bot = await Chatbot.create(cookies=cookies)
             # else:
             #     bot = await Chatbot.create()
-            bot = await Chatbot.create()
+            bot = await Chatbot.create(cookies=cookies)
             text_json = await bot.ask(prompt=prompt, conversation_style=getattr(ConversationStyle, style))
             text_json = get_num(text_json["item"]["messages"])
             text = text_json['text']
