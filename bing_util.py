@@ -57,6 +57,7 @@ async def bing(quest, semaphore, n, style):
         result.append([])
         text, source = await get_ask(quest, style)
         result[n] = [text, source]
+        print(n+'\t'+text.replace('\n', ''))
 
 # 定义一个异步函数，用于创建一个信号量，并创建多个协程任务来执行bing函数
 async def main_process(result, sem, style):

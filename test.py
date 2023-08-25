@@ -5,12 +5,15 @@ headers = {
 }
 # 定义请求参数
 params = {
-    "prompts": ["你好", "你叫什么名字"],
-    "sem": 1,
+    "prompts": [],
+    "sem": 80,
     "style": "creative",
+    "cookie": True
 }
 # 发送请求
-# response = requests.post("https://chattest-1umk.onrender.com/bing", headers=headers, json=params)
-response = requests.post("http://127.0.0.1:8000/bing", headers=headers, json=params)
+for n in range(500):
+    params['prompts'].append(str(n))
+response = requests.post("https://chattest-1umk.onrender.com/bing", headers=headers, json=params)
+# response = requests.post("http://127.0.0.1:8000/bing", headers=headers, json=params)
 # 打印返回结果
 print(response.text)
