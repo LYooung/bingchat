@@ -4,7 +4,7 @@ import json
 from fastapi import FastAPI, Request, Response, Depends, HTTPException
 from pydantic import BaseModel
 from EdgeGPT.EdgeGPT import Chatbot, ConversationStyle
-cookies = json.loads(open("cookie.json", encoding="utf-8").read())
+# cookies = json.loads(open("cookie.json", encoding="utf-8").read())
 app = FastAPI()
 
 # 定义一个输入模型类，用于验证和序列化输入数据
@@ -26,10 +26,11 @@ async def get_ask(prompt, style):
     source = []
     for n in range(5):
         try:
-            if cookie:
-                bot = await Chatbot.create(cookies=cookies)
-            else:
-                bot = await Chatbot.create()
+            # if cookie:
+            #     bot = await Chatbot.create(cookies=cookies)
+            # else:
+            #     bot = await Chatbot.create()
+            bot = await Chatbot.create()
             text_json = await bot.ask(prompt=prompt, conversation_style=getattr(ConversationStyle, style))
             text_json = get_num(text_json["item"]["messages"])
             text = text_json['text']
@@ -64,12 +65,12 @@ async def main_process(result, sem, style):
     await asyncio.wait(tasks)
 
 result = []
-cookie = False
+# cookie = False
 # 定义一个路由函数，用于处理POST请求，并返回响应数据
 @app.post("/bing")
 async def deduplicate_api(input: Input):
-    global cookie
+    # global cookie
     # 使用Depends参数来调用依赖函数
-    cookie = input.style
+    # cookie = input.style
     await main_process(input.prompts, input.sem, input.style)
     return result
