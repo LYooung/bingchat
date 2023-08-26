@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import asyncio
+import uuid
 import json
 from fastapi import FastAPI, Request, Response, Depends, HTTPException
 from pydantic import BaseModel
@@ -30,6 +31,7 @@ async def get_ask(prompt, style):
             #     bot = await Chatbot.create(cookies=cookies)
             # else:
             #     bot = await Chatbot.create()
+            cookies[10]['value'] = str(uuid.uuid4()).replace('-', '')
             bot = await Chatbot.create(cookies=cookies)
             text_json = await bot.ask(prompt=prompt, conversation_style=getattr(ConversationStyle, style))
             text_json = get_num(text_json["item"]["messages"])
