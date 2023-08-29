@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import asyncio
-import uuid
 import json
 from fastapi import FastAPI, Request, Response, Depends, HTTPException
 from pydantic import BaseModel
@@ -13,7 +12,11 @@ class Input(BaseModel):
     prompts: list
     sem: int
     style: str
-    cookie: bool
+    cookie_U: str
+
+class InputUpdate(BaseModel):
+    text: str
+
 
 # 定义一个辅助函数，用于从参数中提取有用的信息
 def get_num(param):
@@ -27,12 +30,8 @@ async def get_ask(prompt, style):
     source = []
     for n in range(5):
         try:
-            # if cookie:
-            #     bot = await Chatbot.create(cookies=cookies)
-            # else:
-            #     bot = await Chatbot.create()
-            # cookies[10]['value'] = str(uuid.uuid4()).replace('-', '')
             bot = await Chatbot.create(cookies=cookies)
+            print(cookies[10]['value'])
             text_json = await bot.ask(prompt=prompt, conversation_style=getattr(ConversationStyle, style))
             text_json = get_num(text_json["item"]["messages"])
             text = text_json['text']
@@ -44,7 +43,6 @@ async def get_ask(prompt, style):
             source = list(set(source))
             return text, source
         except Exception as e:
-            # 使用HTTPException来处理异常，并返回错误信息
             raise HTTPException(status_code=500, detail=str(e))
         finally:
             try:
@@ -59,7 +57,6 @@ async def bing(quest, semaphore, n, style):
         result.append([])
         text, source = await get_ask(quest, style)
         result[n] = [text, source]
-        print(n+'\t'+text.replace('\n', ''))
 
 # 定义一个异步函数，用于创建一个信号量，并创建多个协程任务来执行bing函数
 async def main_process(result, sem, style):
@@ -68,12 +65,17 @@ async def main_process(result, sem, style):
     await asyncio.wait(tasks)
 
 result = []
-# cookie = False
 # 定义一个路由函数，用于处理POST请求，并返回响应数据
+# uvicorn bing_util:app --reload
 @app.post("/bing")
 async def deduplicate_api(input: Input):
-    # global cookie
-    # 使用Depends参数来调用依赖函数
-    # cookie = input.style
+    cookies[10]['value'] = input.cookie_U
     await main_process(input.prompts, input.sem, input.style)
     return result
+
+# 定义一个PUT请求的路由函数，用于更新cookie.json文件
+@app.post("/update-cookie")
+async def update_cookie(new_cookie: InputUpdate):
+    # 打开cookie.json文件，并读取其中的内容
+    with open("cookie.json", "w", encoding="utf-8") as f:
+        f.write(new_cookie.text)
