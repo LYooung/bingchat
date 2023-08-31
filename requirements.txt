@@ -1,5 +1,0 @@
-EdgeGPT==0.13.2
-fastapi==0.101.1
-pipreqs==0.4.13
-pydantic==2.2.1
-uvicorn==0.22.0
