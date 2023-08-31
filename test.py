@@ -16,7 +16,7 @@ params = {
     "prompts": [],
     "sem": 20,
     "style": "creative",
-    "cookie_U": "dfgdfd"
+    "cookie_U": "wdfdfgd"
 }
 params1 = {
     "text": '''[
@@ -420,11 +420,11 @@ params1 = {
 ]'''
 }
 # 发送请求
-for n in range(10):
-    params['prompts'].append('hello')
+for n in range(5):
+    params['prompts'].append('你好，你会使用中文吗')
 # response = requests.post("https://chattest-1umk.onrender.com/bing", headers=headers, json=params)
-# response = requests.post("http://127.0.0.1:8000/bing", headers=headers, json=params)
-response = requests.post("http://127.0.0.1:8000/update-cookie", headers=headers, json=params1)
+response = requests.post("http://127.0.0.1:8000/bing", headers=headers, json=params)
+# response = requests.post("http://127.0.0.1:8000/update-cookie", headers=headers, json=params1)
 try:
     a = ast.literal_eval(response.text)
     print(a)
