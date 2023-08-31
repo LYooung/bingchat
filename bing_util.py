@@ -14,6 +14,10 @@ class Input(BaseModel):
     style: str
     cookie_U: str
 
+class InputUpdate(BaseModel):
+    text: str
+
+
 # 定义一个辅助函数，用于从参数中提取有用的信息
 def get_num(param):
     for _ in param:
@@ -29,6 +33,7 @@ async def get_ask(prompt, style):
             bot = await Chatbot.create(cookies=cookies)
             text_json = await bot.ask(prompt=prompt, conversation_style=getattr(ConversationStyle, style))
             text_json = get_num(text_json["item"]["messages"])
+            print(text_json)
             text = text_json['text']
             try:
                 for items in text_json['sourceAttributions']:
@@ -38,7 +43,7 @@ async def get_ask(prompt, style):
             source = list(set(source))
             return text, source
         except Exception as e:
-            raise HTTPException(status_code=500, detail=str(e))
+            print(e)
         finally:
             try:
                 await bot.close()
@@ -64,8 +69,13 @@ result = []
 # uvicorn bing_util:app --reload
 @app.post("/bing")
 async def deduplicate_api(input: Input):
-    global result
-    result = []
     cookies[10]['value'] = input.cookie_U
     await main_process(input.prompts, input.sem, input.style)
     return result
+
+# 定义一个PUT请求的路由函数，用于更新cookie.json文件
+@app.put("/update-cookie")
+async def update_cookie(new_cookie: InputUpdate):
+    # 打开cookie.json文件，并读取其中的内容
+    with open("cookie.json", "w", encoding="utf-8") as f:
+        f.write(new_cookie.text)

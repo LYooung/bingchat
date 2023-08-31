@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="85dc86aa-9835-4bf9-99a6-e67744023a50" name="Changes" comment="fifteen">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements备份.txt" afterDir="false" />
+    <list default="true" id="85dc86aa-9835-4bf9-99a6-e67744023a50" name="Changes" comment="seventeen">
+      <change beforePath="$PROJECT_DIR$/bing_util.py" beforeDir="false" afterPath="$PROJECT_DIR$/bing_util.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,9 +133,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.test1" />
         <item itemvalue="Python.get_data" />
         <item itemvalue="Python tests.Python tests in get_data.py" />
-        <item itemvalue="Python.test1" />
       </list>
     </recent_temporary>
   </component>
@@ -151,7 +150,7 @@
       <workItem from="1692781772880" duration="329000" />
       <workItem from="1692782112618" duration="2960000" />
       <workItem from="1692785374671" duration="4765000" />
-      <workItem from="1693381670047" duration="4130000" />
+      <workItem from="1693381670047" duration="4644000" />
     </task>
     <task id="LOCAL-00001" summary="first">
       <created>1692786259354</created>
@@ -251,7 +250,21 @@
       <option name="project" value="LOCAL" />
       <updated>1693462818249</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="sixteen">
+      <created>1693465730601</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1693465730601</updated>
+    </task>
+    <task id="LOCAL-00016" summary="seventeen">
+      <created>1693465847646</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1693465847646</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +296,9 @@
     <MESSAGE value="twelve" />
     <MESSAGE value="fourteen" />
     <MESSAGE value="fifteen" />
-    <option name="LAST_COMMIT_MESSAGE" value="fifteen" />
+    <MESSAGE value="sixteen" />
+    <MESSAGE value="seventeen" />
+    <option name="LAST_COMMIT_MESSAGE" value="seventeen" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -330,6 +345,6 @@
     <SUITE FILE_PATH="coverage/bing_li$test1.coverage" NAME="test1 Coverage Results" MODIFIED="1693301789683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/bing_li$get_data.coverage" NAME="get_data Coverage Results" MODIFIED="1693311579403" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/bing_li$.coverage" NAME=" Coverage Results" MODIFIED="1693311517345" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/bing_li$test.coverage" NAME="test Coverage Results" MODIFIED="1693464001461" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/bing_li$test.coverage" NAME="test Coverage Results" MODIFIED="1693466000989" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
