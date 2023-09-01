@@ -46,9 +46,9 @@ async def get_ask(prompt, style):
         finally:
             try:
                 await bot.close()
-            except:
-                pass
-    return ''
+            except Exception as e:
+                print(e)
+    return '返回错误', []
 
 # 定义一个异步函数，用于并发地调用get_ask函数，并将结果存储在result列表中
 async def bing(quest, semaphore, n, style):
