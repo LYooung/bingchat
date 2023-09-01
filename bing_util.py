@@ -33,13 +33,12 @@ async def get_ask(prompt, style):
             bot = await Chatbot.create(cookies=cookies)
             text_json = await bot.ask(prompt=prompt, conversation_style=getattr(ConversationStyle, style))
             text_json = get_num(text_json["item"]["messages"])
-            print(text_json)
             text = text_json['text']
             try:
                 for items in text_json['sourceAttributions']:
                     source.append(f"{items['providerDisplayName']}\t{items['seeMoreUrl']}")
-            except:
-                pass
+            except Exception as e:
+                print(e)
             source = list(set(source))
             return text, source
         except Exception as e:
@@ -69,8 +68,12 @@ result = []
 # uvicorn bing_util:app --reload
 @app.post("/bing")
 async def deduplicate_api(input: Input):
+    global result
+    print('调用接口')
+    result = []
     cookies[10]['value'] = input.cookie_U
     await main_process(input.prompts, input.sem, input.style)
+    print('调用结束')
     return result
 
 # 定义一个PUT请求的路由函数，用于更新cookie.json文件
